@@ -16,7 +16,7 @@ function App() {
     setArray(boxes);
   }
 
-  let status = 'Tic-Tac-Toe';
+  let status;
   status = calculateWinner(array)
     ? `Winner: ${calculateWinner(array)}`
     : xNext
