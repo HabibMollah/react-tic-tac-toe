@@ -23,7 +23,7 @@ function App() {
     ? 'Next turn: X'
     : 'Next turn: O';
   return (
-    <div className="container  my-[20vh] text-center">
+    <div className="my-[20vh] text-center">
       <h1 className="my-4 text-4xl font-bold text-gray-400">{status}</h1>
       <div className="mx-auto grid w-80 grid-cols-3 gap-2">
         <Square value={array[0]} onSquareClick={() => handleClick(0)} />
