@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import Square from './Square';
+import calculateWinner from './calculateWinner';
 
 function App() {
   // the state of all squares of the game
@@ -40,34 +42,4 @@ function App() {
   );
 }
 
-function Square({ value, onSquareClick }) {
-  return (
-    <button
-      onClick={onSquareClick}
-      className="mx-auto h-24 w-24 rounded-3xl border border-gray-100 bg-gray-100 text-4xl font-black text-white hover:bg-gray-200">
-      <div className={value === 'X' ? 'text-red-500' : 'text-blue-500'}>
-        {value}
-      </div>
-    </button>
-  );
-}
-// function for deciding who won
-function calculateWinner(arr) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-  ];
-
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (arr[a] && arr[a] === arr[b] && arr[a] === arr[c]) return arr[a];
-  }
-  return null;
-}
 export default App;
