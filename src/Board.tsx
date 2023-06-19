@@ -1,14 +1,24 @@
+import { SquareType } from './App';
 import Square from './Square';
 import calculateWinner from './calculateWinner';
 
 interface Props {
-  array: null[] | string[];
-  setArray: (boxes: null[] | string[]) => void;
+  array: SquareType[];
+  setArray: (boxes: SquareType[]) => void;
   xNext: boolean;
   setXnext: (a: boolean) => void;
+  history: SquareType[][];
+  setHistory: (boxes: SquareType[][]) => void;
 }
 
-function Board({ array, setArray, xNext, setXnext }: Props) {
+function Board({
+  array,
+  setArray,
+  xNext,
+  setXnext,
+  history,
+  setHistory,
+}: Props) {
   function handleClick(i: number) {
     // return early if the square has been clicked once or the game is over
     if (array[i] || calculateWinner(array)) return;
@@ -17,6 +27,7 @@ function Board({ array, setArray, xNext, setXnext }: Props) {
     boxes[i] = xNext ? 'X' : 'O';
     setXnext(!xNext);
     setArray(boxes);
+    setHistory([...history, boxes]);
   }
 
   let status;
@@ -26,7 +37,7 @@ function Board({ array, setArray, xNext, setXnext }: Props) {
     ? 'Next turn: X'
     : 'Next turn: O';
   return (
-    <div className="my-[20vh] text-center">
+    <div className="mb-8 text-center">
       <h1 className="my-4 text-4xl font-bold text-gray-400">{status}</h1>
       <div className="mx-auto grid w-80 grid-cols-3 gap-2">
         <Square value={array[0]} onSquareClick={() => handleClick(0)} />
