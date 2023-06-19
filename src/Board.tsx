@@ -1,14 +1,15 @@
-import { useState } from 'react';
 import Square from './Square';
 import calculateWinner from './calculateWinner';
 
-function Board() {
-  // the state of all squares of the game
-  const [array, setArray] = useState(Array(9).fill(null));
-  // for deciding is 'X' next or 'O'
-  const [xNext, setXnext] = useState(true);
+interface Props {
+  array: null[] | string[];
+  setArray: (boxes: null[] | string[]) => void;
+  xNext: boolean;
+  setXnext: (a: boolean) => void;
+}
 
-  function handleClick(i) {
+function Board({ array, setArray, xNext, setXnext }: Props) {
+  function handleClick(i: number) {
     // return early if the square has been clicked once or the game is over
     if (array[i] || calculateWinner(array)) return;
     // create a copy of the state and modify the state then set that copy as state

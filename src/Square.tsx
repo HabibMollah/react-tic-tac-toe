@@ -1,4 +1,9 @@
-function Square({ value, onSquareClick }) {
+interface Props {
+  value: string | null;
+  onSquareClick: () => void;
+}
+
+function Square({ value, onSquareClick }: Props) {
   return (
     <button
       onClick={onSquareClick}
